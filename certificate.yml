@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: example-com
+  namespace: openstack
+spec:
+  secretName: example-com-tls
+  duration: 1h # 90d
+  renewBefore: 10m
+  dnsNames:
+    - www.my-website.com
+  issuerRef:
+    name: ca-issuer

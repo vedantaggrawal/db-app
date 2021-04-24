@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: vault-sub-issuer
+  namespace: openstack
+spec:
+  vault:
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: issuer-1
+        secretRef:
+          key: token
+          name: internal-app-token-4qsc5
+    path: pki/root/sign-intermediate
+    server: http://vault-cluster.vault.svc
