@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/custom-request-headers: HEADER:User-Agent
+    ingress.kubernetes.io/ssl-proxy-headers: X-Forwarded-Proto:https
+    ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: traefik
+  creationTimestamp: "2021-02-25T05:45:08Z"
+  generation: 10
+  labels:
+    app: octavia-admin-api
+  name: octavia-mgmt
+  namespace: openstack
+  resourceVersion: "20053820"
+  selfLink: /apis/extensions/v1beta1/namespaces/openstack/ingresses/octavia-mgmt
+  uid: 019b9d6d-4345-4647-abfb-3ca75f01ee49
+spec:
+  rules:
+  - host: www.mywebsite.com
+    http:
+      paths:
+      - backend:
+          serviceName: octavia-api
+          servicePort: 9876
+        path: /
+  tls:
+  - hosts:
+    - www.mywebsite.com
+    secretName: example-com-tls
+status:
+  loadBalancer: {}
