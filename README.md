@@ -81,3 +81,20 @@ token_ttl                           20m
 token_type                          default
 ttl                                 20m
 ```
+===============
+**Note:** To get the traefik part working, make sure to change the targetPort for the mgmt service to https and restart pod to reflect the changes otherwise you will get this error:
+```
+(pyenv-ansible-2.6) [dev] root@foreman:oiaas-deployment-ansible# curl https://barbican.oiaas.com
+curl: (35) SSL received a record that exceeded the maximum permissible length.
+```
+ and to delete traefik pods again otherwise you will get this error:
+ ```
+* About to connect() to barbican.oiaas.com port 443 (#0)
+*   Trying 192.168.1.184...
+* Connection refused
+* Failed connect to barbican.oiaas.com:443; Connection refused
+* Closing connection 0
+curl: (7) Failed connect to barbican.oiaas.com:443; Connection refused
+```
+
+
